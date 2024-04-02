@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3d3m4xs0k2r0"]
+
+[ext_resource type="Texture2D" uid="uid://bv20yl4vb73wx" path="res://background.jpg" id="1_5un1e"]
+[ext_resource type="Script" path="res://escena_principal.gd" id="1_o2o6f"]
+[ext_resource type="PackedScene" uid="uid://bg1m2fhx2dwr2" path="res://player.tscn" id="2_a3kgc"]
+[ext_resource type="Script" path="res://player.gd" id="3_ai7iv"]
+[ext_resource type="PackedScene" uid="uid://dmw08wie5o5wa" path="res://floor.tscn" id="3_xw3ed"]
+[ext_resource type="PackedScene" uid="uid://deaipp1h43xnw" path="res://bin.tscn" id="4_mho8t"]
+[ext_resource type="Script" path="res://Bins.gd" id="5_b147b"]
+[ext_resource type="Script" path="res://Score.gd" id="8_8gx3u"]
+[ext_resource type="FontFile" uid="uid://cvh2gso1pecpn" path="res://RetroMario-Regular.otf" id="8_p2lf4"]
+
+[node name="EscenaPrincipal" type="Node2D"]
+script = ExtResource("1_o2o6f")
+
+[node name="Player" type="Node" parent="."]
+
+[node name="Player" parent="Player" instance=ExtResource("2_a3kgc")]
+z_index = 2
+position = Vector2(200, 400)
+scale = Vector2(4, 4)
+script = ExtResource("3_ai7iv")
+
+[node name="Bins" type="Node2D" parent="."]
+z_index = 1
+script = ExtResource("5_b147b")
+
+[node name="1" parent="Bins" instance=ExtResource("4_mho8t")]
+position = Vector2(600, 0)
+
+[node name="2" parent="Bins" instance=ExtResource("4_mho8t")]
+position = Vector2(1200, 0)
+
+[node name="3" parent="Bins" instance=ExtResource("4_mho8t")]
+position = Vector2(1800, 0)
+
+[node name="Floor" parent="." instance=ExtResource("3_xw3ed")]
+position = Vector2(-2593, 466)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(151, 599)
+scale = Vector2(2.61123, 2.61123)
+texture = ExtResource("1_5un1e")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Score" type="Label" parent="UI"]
+offset_left = 354.0
+offset_top = 90.0
+offset_right = 414.0
+offset_bottom = 230.0
+theme_override_fonts/font = ExtResource("8_p2lf4")
+theme_override_font_sizes/font_size = 100
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_8gx3u")
+theme_override_font_sizes/font_size = 100
+theme_override_fonts/font = ExtResource("8_p2lf4")
